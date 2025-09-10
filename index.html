@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Helping Hands - Food & Shelter Support</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f8f9fa;
+    }
+
+    header {
+      background-color: #2c3e50;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    header h1 {
+      margin: 0;
+    }
+
+    nav {
+      background-color: #34495e;
+      display: flex;
+      justify-content: center;
+      padding: 10px;
+    }
+
+    nav a {
+      color: white;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    main {
+      padding: 30px;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    .section {
+      background-color: white;
+      padding: 25px;
+      margin-bottom: 30px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+    }
+
+    .section h2 {
+      margin-top: 0;
+      color: #2c3e50;
+    }
+
+    input, select, textarea, button {
+      width: 100%;
+      padding: 12px;
+      margin-top: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+
+    button {
+      background-color: #27ae60;
+      color: white;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #219150;
+    }
+
+    footer {
+      background-color: #2c3e50;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      margin-top: 40px;
+    }
+
+    .success {
+      background-color: #d4edda;
+      color: #155724;
+      padding: 10px;
+      margin-top: 10px;
+      border-left: 6px solid #28a745;
+      border-radius: 5px;
+      display: none;
+    }
+
+    @media (max-width: 600px) {
+      nav {
+        flex-direction: column;
+      }
+
+      nav a {
+        margin: 10px 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Helping Hands</h1>
+    <p>Providing Food & Shelter to Those in Need</p>
+  </header>
+
+  <nav>
+    <a href="#mission">Our Mission</a>
+    <a href="#requestHelp">Need Help?</a>
+    <a href="#contribute">Volunteer / Donate</a>
+  </nav>
+
+  <main>
+    <section id="mission" class="section">
+      <h2>🌍 Our Mission</h2>
+      <p>
+        Helping Hands is a non-profit organization dedicated to supporting the homeless and underprivileged with access to food, clean water, and safe shelter. 
+        We believe in restoring dignity and hope to every human being. Your support can change lives.
+      </p>
+    </section>
+
+    <section id="requestHelp" class="section">
+      <h2>🆘 Request Food or Shelter</h2>
+      <form id="helpForm">
+        <input type="text" id="helpName" placeholder="Your Full Name" required>
+        <input type="text" id="helpLocation" placeholder="Your Current Location" required>
+        <select id="helpType" required>
+          <option value="">Select Help Type</option>
+          <option value="food">Food</option>
+          <option value="shelter">Shelter</option>
+          <option value="both">Both</option>
+        </select>
+        <textarea id="helpMessage" placeholder="Any additional details..." rows="4"></textarea>
+        <button type="submit">Submit Request</button>
+        <div class="success" id="helpSuccess">✅ Request submitted successfully. Our team will reach out soon.</div>
+      </form>
+    </section>
+
+    <section id="contribute" class="section">
+      <h2>🤝 Volunteer or Donate</h2>
+      <form id="volunteerForm">
+        <input type="text" id="volunteerName" placeholder="Your Full Name" required>
+        <input type="email" id="volunteerEmail" placeholder="Your Email Address" required>
+        <select id="volunteerType" required>
+          <option value="">How would you like to help?</option>
+          <option value="volunteer">Volunteer (on ground)</option>
+          <option value="donate">Donate (money/resources)</option>
+        </select>
+        <textarea id="volunteerMessage" placeholder="Message or details..." rows="4"></textarea>
+        <button type="submit">Submit Interest</button>
+        <div class="success" id="volunteerSuccess">🙏 Thank you for your support. We'll contact you soon.</div>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    &copy; 2025 Helping Hands Organization. All rights reserved.
+  </footer>
+
+  <script>
+    // Handle Help Request Submission
+    document.getElementById('helpForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const name = document.getElementById('helpName').value;
+      const location = document.getElementById('helpLocation').value;
+      const type = document.getElementById('helpType').value;
+
+      if (!name || !location || !type) {
+        alert("Please fill in all required fields.");
+        return;
+      }
+
+      // Simulate saving to database / API call
+      console.log("Help Request Submitted:", {
+        name,
+        location,
+        type,
+        message: document.getElementById('helpMessage').value
+      });
+
+      document.getElementById('helpSuccess').style.display = 'block';
+      this.reset();
+    });
+
+    // Handle Volunteer/Donate Submission
+    document.getElementById('volunteerForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const name = document.getElementById('volunteerName').value;
+      const email = document.getElementById('volunteerEmail').value;
+      const type = document.getElementById('volunteerType').value;
+
+      if (!name || !email || !type) {
+        alert("Please complete all required fields.");
+        return;
+      }
+
+      console.log("Volunteer/Donation Submitted:", {
+        name,
+        email,
+        type,
+        message: document.getElementById('volunteerMessage').value
+      });
+
+      document.getElementById('volunteerSuccess').style.display = 'block';
+      this.reset();
+    });
+  </script>
+
+</body>
+</html>
